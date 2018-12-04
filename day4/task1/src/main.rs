@@ -65,10 +65,17 @@ fn main() -> io::Result<()> {
     }
 
     let entries = time_tables.iter().collect::<Vec<_>>();
-    let max = *entries.iter().max_by_key (|&entry| (entry.1).0).unwrap();
 
+    let max = *entries.iter().max_by_key(|entry| (entry.1).0).unwrap();
     let id = max.0;
-    let minute = (max.1).1.iter().enumerate().max_by_key(|entry|entry.1).unwrap().0;
+    let minute = (max.1).1.iter().enumerate().max_by_key(|entry| entry.1).unwrap().0;
+
+    println!("{}", id * minute as i32);
+
+    // Task 2
+    let max = entries.iter().max_by_key(|entry| (entry.1).1.iter().max().unwrap()).unwrap();
+    let id = max.0;
+    let minute = (max.1).1.iter().enumerate().max_by_key(|entry| entry.1).unwrap().0;
 
     println!("{}", id * minute as i32);
 
