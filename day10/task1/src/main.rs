@@ -63,6 +63,7 @@ fn main() -> io::Result<()> {
         });
     }
 
+    let mut count = 0;
     let mut d = dimensions(&points);
     loop {
         let previous = points.clone();
@@ -74,7 +75,10 @@ fn main() -> io::Result<()> {
             break;
         }
         d = d2;
+        count += 1;
     }
+
+    println!("{}", count);
 
     Ok(())
 }
